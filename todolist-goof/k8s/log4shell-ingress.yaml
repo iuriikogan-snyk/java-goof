@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: log4shell-ingress
+  namespace: darkweb
+spec:
+    ingressClassName: nginx
+    rules:
+    - host:  log4shell.localhost
+      http:
+        paths:
+          - pathType: ImplementationSpecific 
+            backend:
+              service:
+                name: evil
+                port:
+                  number: 9999
